@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meeting Scheduling · AY2026-2027 Semester 1</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/hub.css">
+<style>
+:root{--reg:#6c8eb5;--simon:#b56c8e;--both:#7fb97f;--gap:#f3eee3;--ink:#222;--muted:#666;--line:#ddd;--header:#c97a3a}
+*{box-sizing:border-box}
+body{font-family:'Segoe UI',-apple-system,Helvetica,Arial,sans-serif;margin:0;padding:24px;background:var(--gap);color:var(--ink)}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin-bottom:18px;display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+header.top h1{margin:0;font-size:22px}
+header.top .crumb{color:var(--muted);font-size:13px;margin-left:auto}
+a{color:#0b62a4;text-decoration:none}a:hover{text-decoration:underline}
+.banner{background:#fff7e6;border:1px solid #f0c97a;border-radius:8px;padding:10px 14px;margin-bottom:18px;font-size:14px;color:#7a5800}
+.banner strong{color:#5a3e00}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin-bottom:18px}
+.card h2{margin:0 0 10px;font-size:16px;color:var(--header);letter-spacing:.3px;text-transform:uppercase}
+table.grid{border-collapse:collapse;width:100%;font-size:13px;table-layout:fixed}
+table.grid th,table.grid td{border:1px solid var(--line);text-align:center;padding:0;height:34px;vertical-align:middle}
+table.grid thead th{background:var(--header);color:#fff;font-weight:600;padding:8px}
+table.grid tbody th{background:#f5ecdc;color:#7a4d18;font-weight:600;width:78px;border-right:2px solid var(--line)}
+.cell-busy-reg{background:var(--reg);color:#fff;font-weight:500}
+.cell-busy-reg .lab{font-size:11px;display:block;line-height:1.1;padding:2px}
+.cell-busy-sim{background:var(--simon);color:#fff;font-weight:500}
+.cell-busy-sim .lab{font-size:11px;display:block;line-height:1.1;padding:2px}
+.cell-both{background:var(--both);color:#0c3a0c;font-weight:600}
+.cell-both.hot{background:#5fa15f;color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;margin:8px 0 0;color:var(--muted)}
+.legend .sw{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:6px;vertical-align:middle;border:1px solid var(--line)}
+.legend .sw.reg{background:var(--reg)}.legend .sw.sim{background:var(--simon)}.legend .sw.both{background:var(--both)}.legend .sw.both.hot{background:#5fa15f}.legend .sw.free{background:#fff}
+ul.slots{list-style:none;padding:0;margin:0}
+ul.slots li{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:8px;background:#fcfaf3;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+ul.slots li.best{border-color:#5fa15f;background:#eef7ee}
+ul.slots .when{font-weight:600}
+ul.slots .dur{color:var(--muted);font-size:13px}
+ul.slots .note{color:var(--muted);font-size:13px;margin-left:auto}
+table.courses{border-collapse:collapse;width:100%;font-size:14px;margin-top:8px}
+table.courses th,table.courses td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+table.courses thead th{background:#c97a3a;color:#fff;font-weight:600}
+table.courses tbody tr:nth-child(even){background:#fbf8f1}
+.who{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:#fff;display:inline-block;padding:1px 6px;border-radius:3px;margin-right:6px}
+.who.reg{background:var(--reg)}.who.sim{background:var(--simon)}
+footer{margin-top:24px;color:var(--muted);font-size:12px;text-align:center}
+@media (max-width:760px){table.grid{font-size:11px}table.grid tbody th{width:54px;font-size:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <h1>📅 Meeting Scheduling · AY2026-2027 Semester 1</h1>
+  <div class="crumb"><a href="/">← Back to Regina's Course Hub</a></div>
+</header>
+<div class="banner">
+  <strong>How to read this page:</strong> Below are the class timetables for Regina Ngai and Simon Wang for Semester 1 of AY 2026-27 (times in <strong>Asia/Hong_Kong</strong>). The weekly grid runs 08:30–21:30. Green cells = slots when <strong>both</strong> are free (deeper green = longer block). The "Suggested recurring meetings" panel highlights the best recurring windows for a weekly in-person meeting.
+</div>
+
+<div class="card">
+  <h2>Suggested recurring meetings</h2>
+  <ul class="slots">
+    <li class="best"><span class="who reg">Regina</span><span class="who sim">Simon</span><span class="when">Wed 17:30 &#8211; 18:30</span><span class="dur">60 min 繚 weekly</span><span class="note">Simon's preferred Wed afternoon slot &#8212; Regina finishes MATH1205 at 17:20, so this is the first free 60 min on her heaviest day.</span></li>
+    <li class="best"><span class="who reg">Regina</span><span class="who sim">Simon</span><span class="when">Wed 17:30 &#8211; 19:30</span><span class="dur">2 hr 繚 weekly</span><span class="note">Same Wed afternoon, doubled. Use for deep-dive topics.</span></li>
+    <li><span class="who reg">Regina</span><span class="who sim">Simon</span><span class="when">Mon 19:30 &#8211; 21:30</span><span class="dur">2 hr 繚 weekly</span><span class="note">Clean evening on both sides. Good if Wed afternoon runs short.</span></li>
+    <li><span class="who reg">Regina</span><span class="who sim">Simon</span><span class="when">Tue 09:30 &#8211; 11:30</span><span class="dur">2 hr 繚 weekly</span><span class="note">Quiet mid-morning before either of you has afternoon classes.</span></li>
+    <li><span class="who reg">Regina</span><span class="who sim">Simon</span><span class="when">Thu 13:00 &#8211; 15:30</span><span class="dur">2.5 hr 繚 weekly</span><span class="note">Long uninterrupted Thu afternoon. Regina free all of Thu before 15:30; Simon has no Thu teaching.</span></li>
+    <li><span class="who reg">Regina</span><span class="who sim">Simon</span><span class="when">Fri 10:30 &#8211; 12:30</span><span class="dur">2 hr 繚 weekly</span><span class="note">Late-morning Fri, before Regina's COMP3015 at 12:30.</span></li>
+    <li><span class="who reg">Regina</span><span class="who sim">Simon</span><span class="when">Sat any time</span><span class="dur">flexible</span><span class="note">Both fully free all of Saturday &#8212; good for longer / occasional sessions.</span></li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Weekly free-busy grid (both of you)</h2>
+  <div class="legend">
+    <span><span class="sw both"></span>Both free</span>
+    <span><span class="sw both hot"></span>Both free (3+ hr uninterrupted)</span>
+    <span><span class="sw reg"></span>Regina in class</span>
+    <span><span class="sw sim"></span>Simon in class</span>
+  </div>
+  <table class="grid"><colgroup><col><col><col><col><col><col><col></colgroup>
+    <thead><tr><th></th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead>
+    <tbody>
+      <tr><th>08:30</th><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both hot">??/td></tr>
+      <tr><th>09:30</th><td class="cell-busy-sim"><span class="lab">GCAP3226</span><span class="lab">LMC</span></td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both hot">??/td></tr>
+      <tr><th>10:30</th><td class="cell-busy-sim"><span class="lab">GCAP3226</span></td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both hot">??/td></tr>
+      <tr><th>11:30</th><td class="cell-busy-sim"><span class="lab">GCAP3226</span></td><td class="cell-busy-sim"><span class="lab">UCLC1009</span></td><td class="cell-busy-reg"><span class="lab">COMP4116</span><span class="lab">LMC512</span></td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both hot">??/td></tr>
+      <tr><th>12:30</th><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-busy-reg"><span class="lab">COMP3047</span><span class="lab">SCT503</span></td><td class="cell-both">??/td><td class="cell-busy-reg"><span class="lab">COMP3015</span><span class="lab">SCT503</span></td><td class="cell-both hot">??/td></tr>
+      <tr><th>13:30</th><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-busy-reg"><span class="lab">COMP3047</span></td><td class="cell-both">??/td><td class="cell-busy-sim"><span class="lab">UCLC1009</span></td><td class="cell-both hot">??/td></tr>
+      <tr><th>14:30</th><td class="cell-both">??/td><td class="cell-busy-sim"><span class="lab">UCLC1009</span></td><td class="cell-busy-reg"><span class="lab">MATH1205</span><span class="lab">SCT501</span></td><td class="cell-both">??/td><td class="cell-busy-sim"><span class="lab">UCLC1009</span></td><td class="cell-both hot">??/td></tr>
+      <tr><th>15:30</th><td class="cell-both">??/td><td class="cell-busy-sim"><span class="lab">UCLC1009</span></td><td class="cell-busy-reg"><span class="lab">MATH1205</span></td><td class="cell-busy-sim"><span class="lab">GCAP3056</span></td><td class="cell-busy-sim"><span class="lab">GCAP3056</span></td><td class="cell-both hot">??/td></tr>
+      <tr><th>16:30</th><td class="cell-both">??/td><td class="cell-busy-reg"><span class="lab">GTCU2027</span><span class="lab">WLB205</span></td><td class="cell-busy-reg"><span class="lab">MATH1205</span></td><td class="cell-busy-sim"><span class="lab">GCAP3056</span></td><td class="cell-busy-sim"><span class="lab">GCAP3056</span></td><td class="cell-both hot">??/td></tr>
+      <tr><th>17:30</th><td class="cell-both">??/td><td class="cell-busy-reg"><span class="lab">GTCU2027</span></td><td class="cell-both"><strong>??suggested</strong></td><td class="cell-busy-sim"><span class="lab">GCAP3056</span></td><td class="cell-both">??/td><td class="cell-both hot">??/td></tr>
+      <tr><th>18:30</th><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-busy-reg"><span class="lab">COMP3015</span><span class="lab">(ends 18:20)</span></td><td class="cell-both hot">??/td></tr>
+      <tr><th>19:30</th><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both hot">??/td></tr>
+      <tr><th>20:30</th><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both hot">??/td></tr>
+      <tr><th>21:30</th><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both">??/td><td class="cell-both hot">??/td></tr>
+    </tbody>
+  </table>
+  <div class="legend" style="margin-top:10px">
+    <span><em>??Wed 17:30 is the first free 60 min on Wednesday after Regina's MATH1205 ends at 17:20.</em></span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Regina's class schedule 繚 Semester 1 2026-27</h2>
+  <table class="courses">
+    <thead><tr><th>#</th><th>Day / Time</th><th>Course Code</th><th>Section</th><th>Course Title</th><th>Venue</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Tue 15:30 &#8211; 18:30</td><td>GTCU2027</td><td>00001</td><td>Inter-Asian Contacts and the Invention of Everyday Cultures</td><td>WLB205</td></tr>
+      <tr><td>2</td><td>Wed 11:30 &#8211; 12:20</td><td>COMP4116</td><td>10001</td><td>Information Systems Management</td><td>LMC512</td></tr>
+      <tr><td>3</td><td>Wed 12:30 &#8211; 14:20</td><td>COMP3047</td><td>00001</td><td>Software Engineering</td><td>SCT503</td></tr>
+      <tr><td>4</td><td>Wed 14:30 &#8211; 17:20</td><td>MATH1205</td><td>00001</td><td>Discrete Mathematics</td><td>SCT501</td></tr>
+      <tr><td>5</td><td>Thu 15:30 &#8211; 17:20</td><td>COMP4116</td><td>00001</td><td>Information Systems Management</td><td>LMC512</td></tr>
+      <tr><td>6</td><td>Thu 17:30 &#8211; 19:20</td><td>COMP3015</td><td>10002</td><td>Data Communications and Networking</td><td>FSC801C, FSC801D</td></tr>
+      <tr><td>7</td><td>Fri 12:30 &#8211; 15:20</td><td>COMP3015</td><td>00001</td><td>Data Communications and Networking</td><td>SCT503</td></tr>
+      <tr><td>8</td><td>Fri 15:30 &#8211; 18:20</td><td>COMP3047</td><td>20001</td><td>Software Engineering</td><td>FSC801C, FSC801D</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Simon's class schedule 繚 Semester 1 2026-27</h2>
+  <table class="courses">
+    <thead><tr><th>#</th><th>Day / Time</th><th>Course Code</th><th>Section</th><th>Course Title</th><th>Venue</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Mon 09:30 &#8211; 12:20</td><td>GCAP3226</td><td>00001</td><td>Empowering Citizens through Data: Participatory Policy Analysis for Hong Kong</td><td>To be announced</td></tr>
+      <tr><td>2</td><td>Tue 11:30 &#8211; 12:20</td><td>UCLC1009</td><td>00022</td><td>University English II</td><td>To be announced</td></tr>
+      <tr><td>3</td><td>Tue 14:30 &#8211; 16:20</td><td>UCLC1009</td><td>00023</td><td>University English II</td><td>To be announced</td></tr>
+      <tr><td>4</td><td>Wed 12:30 &#8211; 14:20</td><td>LANG0036</td><td>00010</td><td>Enhancing English through Global Citizenship</td><td>To be announced</td></tr>
+      <tr><td>5</td><td>Wed 15:30 &#8211; 17:20</td><td>UCLC1009</td><td>00022</td><td>University English II</td><td>To be announced</td></tr>
+      <tr><td>6</td><td>Fri 13:30 &#8211; 14:20</td><td>UCLC1009</td><td>00023</td><td>University English II</td><td>To be announced</td></tr>
+      <tr><td>7</td><td>Fri 15:30 &#8211; 18:20</td><td>GCAP3056</td><td>00001</td><td>Taking a Stand: Turning Research Insights into Policy Recommendations</td><td>To be announced</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Communication &amp; status</h2>
+  <p><strong>Communication channels:</strong> WeChat (primary), in-person meetings (Wed afternoon or any of the other green slots above), and this course hub for asynchronous work.</p>
+  <p><strong>About this page:</strong> Auto-generated by Simon's agentic AI assistant from the Semester 1 2026-27 timetables. Last updated 2026-09-28.</p>
+  <p><strong>Deploy status:</strong> Hosted on Railway at <code>gorgeousregina.simonsays.hk/fall20206/meetingScheduling.html</code>. Source: <code>tesolchina/AI_Simon_tutoring/fall20206/meetingScheduling.html</code> (fork of <code>regina05ngai-afk/AI_Simon_tutoring</code>).</p>
+  <p><strong>Tip for the upcoming semester:</strong> when we meet in person on Wednesdays, the Wed 17:30 slot is short. If the meeting runs over, an alternative is the Mon 19:30 evening slot.</p>
+</div>
+
+<footer>
+  Regina's Course Hub 繚 AY2026-27 Semester 1 繚 Generated 2026-09-28
+</footer>
+
+</div>
+</body>
+</html>
